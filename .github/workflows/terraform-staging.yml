@@ -23,18 +23,19 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_DEFAULT_REGION: eu-west-3
 
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
 
       - name: Check Terraform files
         run: |
           pwd
           ls -la
           terraform version
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
 
       - name: Generate Random Suffix
         id: suffix
