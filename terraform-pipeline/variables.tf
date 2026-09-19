@@ -8,3 +8,7 @@ variable "random_suffix" {
     description = "A random suffix to ensure the bucket name is unique."
     type        = string
 }
+variable "environment" {
+    description = "Deployment environment"
+    type        = string
+}
