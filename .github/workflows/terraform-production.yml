@@ -32,9 +32,9 @@ jobs:
           ls -la
           terraform version
 
-      - name: Generate Random Suffix
+      - name: Set Production Suffix
         id: suffix
-        run: echo "suffix=$(openssl rand -hex 4)" >> "$GITHUB_OUTPUT"
+        run: echo "suffix=21575daf" >> "$GITHUB_OUTPUT"
 
       - name: Terraform Init
         run: terraform init -backend-config="key=production/terraform.tfstate"
@@ -43,4 +43,5 @@ jobs:
         run: terraform plan -var="random_suffix=${{ steps.suffix.outputs.suffix }}" -var="environment=production"
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve -var="random_suffix=${{ steps.suffix.outputs.suffix }}" -var="environment=production"
+        run: terraform apply -auto-approve -var="random_suffix=${{ steps.suffix.outputs.suffix }}" -var="environment=production"how step 4
+        

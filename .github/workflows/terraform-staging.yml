@@ -37,9 +37,9 @@ jobs:
           ls -la
           terraform version
 
-      - name: Generate Random Suffix
+      - name: Set Staging Suffix
         id: suffix
-        run: echo "suffix=$(openssl rand -hex 4)" >> "$GITHUB_OUTPUT"
+        run: echo "suffix=21575daf" >> "$GITHUB_OUTPUT"
 
       - name: Terraform Init
         run: terraform init
