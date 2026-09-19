@@ -45,7 +45,7 @@ jobs:
         run: terraform init
 
       - name: Terraform Plan
-        run: terraform plan -var="random_suffix=${{ steps.suffix.outputs.suffix }}"
+        run: terraform plan -var="random_suffix=${{ steps.suffix.outputs.suffix }}" -var="environment=staging"
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve -var="random_suffix=${{ steps.suffix.outputs.suffix }}"
+        run: terraform apply -auto-approve -var="random_suffix=${{ steps.suffix.outputs.suffix }}" -var="environment=staging"

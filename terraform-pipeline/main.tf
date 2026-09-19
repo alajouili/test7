@@ -1,11 +1,11 @@
 terraform {
     required_providers {
         aws = {
-            source = "hashicorp/aws"
+            source  = "hashicorp/aws"
             version = "~> 4.0"
-    
         }
     }
+
     backend "s3" {
         bucket = "my-devops-book-tfstate-123456"
         key    = "staging/terraform.tfstate"
@@ -18,10 +18,11 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "staging_bucket" {
-    bucket = "my-staging-bucket-${var.random_suffix}"
-    
+    bucket = "${var.environment}-bucket-${var.random_suffix}"
+
     tags = {
-        Name      = "Staging Bucket" 
-        ManagedBy = "Terraform via GitHub Actions"
+        Name        = "${var.environment} Bucket"
+        ManagedBy   = "Terraform via GitHub Actions"
+        Environment = var.environment
     }
 }
